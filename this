@@ -1,0 +1,34 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Oct 31 13:35:40 2018
+
+@author: Chirag
+"""
+
+import numpy as np
+import random
+class chromosomes:
+    def __init__(self,no_chrom):
+        self.genes=np.array(no_chrom,1)
+        self.fitness=0
+        
+    def fitness_func(x):
+        no=x[0]
+        length_blades=x[1]
+        fitness=(no+length_blades)*12.3*3.14
+        return fitness
+            
+    my_population=[]
+    population_size=10
+    
+    for i in range(10):
+        my_population.append(chromosomes(2))
+    
+    for chromosome in my_population:
+        for y in range(2):
+            chromosome.genes[y]=random.randrange(0,2)
+            
+    for i in mp_population:
+        i.fitness=fitness_func(i.genes)
+        print('chromosome :',i.genes,'Fitness: ',i.fitness)
+    

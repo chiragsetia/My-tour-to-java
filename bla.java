@@ -1,0 +1,3 @@
+ interface bla{
+	  void print();
+}

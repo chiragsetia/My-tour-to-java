@@ -1,0 +1,24 @@
+obj class and its function
+Exceptions in Java
+error class in java
+error vs exception
+Exception class parent
+Threads
+Dynamic Method Dispatch-Polymorphism overloading
+Comparator
+Comparable
+Always try to appolozise, say sorry and say i will learn
+How to create instance in Java-3 ways- https://www.careerride.com/Java-class-how-to-create-instance.aspx 
+JDBC-Java database connector
+binary pq
+https://www.careerride.com/Java-Objects-classes-methods.aspx
+
+ArrayList class-https://www.tutorialspoint.com/java/util/java_util_arraylist.htm4
+set and collection
+arrayList
+hashmap
+vectors
+util
+How does default virtual behavior differ in C++ and Java
+wrapper classes
+
