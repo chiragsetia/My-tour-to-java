@@ -141,3 +141,32 @@ class me{
         this.j=j;
     }
 }
+
+
+//Find Row K
+public class findKRow {
+	
+	public static int FindSpecialRow(int arr[][], int n){
+		//t sumR[]=new int[n];
+        int flag=0;
+        int i;
+        for( i=0;i<n&&flag==0;i++){
+            int sumT=0;
+            for(int j=0;j<n;j++){
+                sumT+=arr[i][j];
+            }
+            if(sumT==0||sumT==1){
+                int sumC=0;
+                for(int j=0;j<n;j++){
+                    sumC+=arr[j][i];
+                }
+                if(sumC==n||sumC==n-1){
+                    flag=1;
+                }
+            }
+        }
+        if(flag==1)
+            return i-1;
+		return -1;
+	}
+}
