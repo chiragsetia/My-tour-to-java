@@ -91,3 +91,53 @@ public class solution {
         spiral(newMatrix,n-2,m-2);
     }
 }
+
+
+//longestPath one test case doesn't run
+	
+import java.util.*;
+import java.lang.Math;
+public class LongestLength {
+    
+    public static int finLongestOverAll(int mat[][], int N){
+      ArrayList<me> list=new ArrayList<>();
+        for(int i=0;i<N;i++){
+            for(int j=0;j<N;j++){
+                list.add(new me(mat[i][j],i,j));
+            }
+        }
+        Collections.sort(list ,new Comparator<me>(){
+            public int compare(me a,me b){
+                return a.v-b.v;
+            }
+        });
+        int max=0;
+        int c=0;
+        me old=list.get(0);
+        for(me k:list){
+            int diff=Math.abs(old.i-k.i)+Math.abs(old.j-k.j);
+            if(old.v+1==k.v&& diff==1){
+                c++;
+            }else{
+                if(c>max){
+                    max=c;
+                }
+                c=0;
+            }
+            old=k;
+        }
+        return max;
+    }
+    
+}
+
+class me{
+    int v;
+    int i;
+    int j;
+    me(int v,int i,int j){
+        this.v=v;
+        this.i=i;
+        this.j=j;
+    }
+}
