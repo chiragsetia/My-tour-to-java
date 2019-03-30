@@ -170,3 +170,55 @@ public class findKRow {
 		return -1;
 	}
 }
+
+//Consecutive chars
+public class consChar {
+	
+	public static void LongestLetterChain(char[][] mat, char[] letters) {
+        int max[]=new int[letters.length];
+        for(int i=0;i<max.length;i++){
+            max[i]=1;
+        }
+        
+        for(int i=0;i<letters.length;i++){
+            int maxL=1;
+            for(int j=0;j<mat.length;j++){
+                for(int k=0;k<mat[j].length;k++){
+                    if(letters[i]==mat[j][k]){
+                        maxL=Math.max(maxL,callFunc(mat,j,k));
+                    }
+                }
+            }
+            max[i]=maxL;
+        }
+        for(int i=0;i<max.length;i++){
+         System.out.println(max[i]);
+        }
+    }
+    static int callFunc(char [][]mat,int i,int j){
+        if(i<0||j<0||i>=mat.length||j>=mat[i].length){
+            return 0;
+        }
+        int max=1;
+        if(i>0 && j>0 && mat[i-1][j-1]==mat[i][j]+1)
+            max=Math.max(max,1+callFunc(mat,i-1,j-1));
+        if(i>0 && mat[i-1][j]==mat[i][j]+1)
+            max=Math.max(max,1+callFunc(mat,i-1,j));
+        if(j>0 && mat[i][j-1]==mat[i][j]+1)
+            max=Math.max(max,1+callFunc(mat,i,j-1));
+        if(i>0 && j<mat[i].length-1 && mat[i-1][j+1]==mat[i][j]+1)
+            max=Math.max(max,1+callFunc(mat,i-1,j+1));
+        if(i<mat.length-1 && j>0 && mat[i+1][j-1]==mat[i][j]+1)
+            max=Math.max(max,1+callFunc(mat,i+1,j-1));
+        if(i<mat.length-1 && mat[i+1][j]==mat[i][j]+1)
+            max=Math.max(max,1+callFunc(mat,i+1,j));
+        if( j<mat[i].length-1 && mat[i][j+1]==mat[i][j]+1){
+           // System.out.println(i+" "+j);
+            max=Math.max(max,1+callFunc(mat,i,j+1));
+        }
+        if(i<mat.length-1&& j<mat[i].length-1 && mat[i+1][j+1]==mat[i][j]+1)
+            max=Math.max(max,1+callFunc(mat,i+1,j+1));  
+    
+    return max;
+    }
+}
