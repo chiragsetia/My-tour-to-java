@@ -222,3 +222,60 @@ public class consChar {
     return max;
     }
 }
+
+
+//commom element in everyrow
+import java.util.*;
+public class CommonElement {
+	
+	public static int FindCommonEleInRows(int[][] mat, int Row, int Col){
+        if(Row==1){
+            return mat[0][Col-1];
+        }
+		List<Integer> list=new ArrayList<>();
+        List<Integer> newList=new ArrayList<>();
+        if(found(mat[1],mat[0][0])){
+            list.add(mat[0][0]);
+        }
+        for(int i=1;i<Col;i++){
+            if(mat[0][i-1]!=mat[0][i]&&found(mat[1],mat[0][i])){
+                list.add(mat[0][i]);
+            }
+        }
+        if(list.size()==0)
+            return -1;
+       // System.out.println(list);
+        for(Integer i:list){
+            int flag=0;
+            for(int j=2;j<Row;j++){
+                if(!found(mat[j],(int)i)){
+                    flag=1;
+                    break;
+                }
+            }
+            if(flag==0){
+               newList.add(i); 
+            }
+        }
+        if(newList.size()!=0){
+            return newList.get(newList.size()-1);
+        }
+		return -1;
+	}
+    public static boolean found(int []arr,int v){
+       // System.out.println(v);
+        int s=0;
+        int e=arr.length-1;
+        while(e>=s){
+            int mid=s+(e-s)/2;
+            if(arr[mid]==v){
+                return true;
+            }else if(arr[mid]>v){
+                e=mid-1;
+            }else
+                s=mid+1;
+        }
+        return false;
+    }
+	
+}
