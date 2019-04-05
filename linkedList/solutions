@@ -267,3 +267,41 @@ public class solution {
         return head;
     }
 }
+
+//split and reverse
+public class splitAndReverse {
+
+	public static void make2List(ListNode<Integer> head) {
+     Stack<ListNode<Integer>> stack=new Stack<>();
+        while(head!=null){
+            stack.push(head);
+            head=head.next;
+        }
+        ListNode<Integer> first=new ListNode<Integer>(-1),f1=first;
+        ListNode<Integer> sec=new ListNode<Integer>(-1),s1=sec;
+        while(!stack.isEmpty()){
+            if(stack.size()%2==0)
+            {
+                sec.next=stack.pop();
+                sec=sec.next;
+            }else{
+                first.next=stack.pop();
+                first=first.next;
+            }
+        }
+        first.next=null;
+        first=f1.next;
+        while(first!=null){
+            System.out.print(first.data+" ");
+            first=first.next;
+        }
+        
+        System.out.println();
+        sec.next=null;
+        sec=s1.next;
+        while(sec!=null){
+            System.out.print(sec.data+" ");
+            sec=sec.next;
+        }
+	}
+}
