@@ -6,3 +6,227 @@ class ListNode<t> {
 		 this.data=data;
 	 }
 }
+
+//merge two linkedList and reverse them in place
+public class merge_reverse {
+
+	
+	public static ListNode<Integer> merge(ListNode<Integer> head1, ListNode<Integer> head2) {
+        ListNode<Integer> prv=null;
+        if(head1==null&&head2==null)
+            return null;
+        while(head1!=null&&head2!=null){
+            if(head1.data>head2.data){
+                ListNode<Integer> temp=head2;
+                head2=head2.next;
+            	temp.next=prv;
+            	prv=temp;
+            }else{
+                ListNode<Integer> temp=head1;
+                head1=head1.next;
+            	temp.next=prv;
+            	prv=temp;
+            }
+        }
+        while(head2!=null){
+             ListNode<Integer> temp=head2;
+                head2=head2.next;
+            	temp.next=prv;
+            	prv=temp;
+        }
+        while(head1!=null){
+             ListNode<Integer> temp=head1;
+                head1=head1.next;
+            	temp.next=prv;
+            	prv=temp;
+        }
+        return prv;
+
+	}
+}
+
+
+
+//update an arbitrary node to next increasing node
+//merge sort from GFG and in place way is also implemented
+public class solution {
+    static ListNode<Integer> head = null;
+	 static ListNode<Integer> sortedMerge( ListNode<Integer> a, ListNode<Integer> b)  
+    { 
+        //ListNode<Integer> result = new ListNode<Integer> (-1); 
+        /* Base cases */
+        if (a == null) 
+            return b; 
+        if (b == null) 
+            return a; 
+         ListNode<Integer> r=a.data<b.data?a:b, prv=null;//new ListNode<Integer>(-1),temp=r;
+         while(a!=null &&b!=null){
+             if(a.data>b.data){
+                 ListNode<Integer> temp=b.next;
+                 b.next=a;
+                 if(prv!=null){
+                     prv.next=b;
+                 }else{
+                     a=b;
+                 }
+                 prv=b;
+                 b=temp;
+             }else
+             {
+              	prv=a;
+             	a=a.next;   
+             }    
+             
+         }
+         if(b!=null)
+             prv.next=b;
+//          while(a!=null&&b!=null){
+//              if(a.data<b.data){
+//                  r.next=a;
+//                  a=a.next;
+//              }else{
+//                  r.next=b;
+//                  b=b.next;
+//              }
+//              r=r.next;
+//          }
+//          if(a!=null){
+//              r.next=a;
+//          }
+//          if(b!=null){
+//              r.next=b;
+//          }
+//          return temp.next;
+        /* Pick either a or b, and recur */
+       
+        //return result.next; 
+         return r;
+  
+    } 
+  
+    static ListNode<Integer> mergeSort(ListNode<Integer> h)  
+    { 
+        // Base case : if head is null 
+        if (h == null || h.next == null) 
+        { 
+            return h; 
+        } 
+  
+        // get the middle of the list 
+        ListNode<Integer> middle = getMiddle(h); 
+        ListNode<Integer> nextofmiddle = middle.next;
+  
+        // set the next of middle node to null 
+        middle.next = null; 
+  
+        // Apply mergeSort on left list 
+        ListNode<Integer> left = mergeSort(h); 
+  
+        // Apply mergeSort on right list 
+        ListNode<Integer> right = mergeSort(nextofmiddle); 
+  
+        // Merge the left and right lists 
+        ListNode<Integer> sortedlist = sortedMerge(left, right); 
+        return sortedlist; 
+    } 
+  
+    // Utility function to get the middle of the linked list 
+    static ListNode<Integer> getMiddle(ListNode h)  
+    { 
+        //Base case 
+        if (h == null) 
+            return h; 
+        ListNode fastptr = h.next; 
+        ListNode slowptr = h; 
+          
+        // Move fastptr by two and slow ptr by one 
+        // Finally slowptr will point to middle node 
+        while (fastptr != null) 
+        { 
+            fastptr = fastptr.next; 
+            if(fastptr!=null) 
+            { 
+                slowptr = slowptr.next; 
+                fastptr=fastptr.next; 
+            } 
+        } 
+        return slowptr; 
+    }
+	public static ListNode<Integer> changeList(ListNode<Integer> head) {
+		// Write your code here
+        head=mergeSort(head);
+        ListNode<Integer> newH=head;
+        while(newH.next!=null){
+            newH.arbitrary=newH.next;
+            newH=newH.next;
+        }
+        return head;
+
+	}
+}
+
+//pattern 
+public class solution {
+	
+	public static ListNode<Integer> changelist(ListNode<Integer> head) {
+		// Write your code here
+        ListNode<Integer> newH=head,newHead=head;
+		 Stack<ListNode<Integer>> stack = new Stack<>();
+        while(head!=null){
+            stack.push(head);
+            head=head.next;
+        }
+        int l=stack.size()/2;
+        while(l--!=0){
+         ListNode<Integer> temp=newH.next;
+            newH.next=stack.pop();
+            newH.next.next=temp;
+            newH=temp;
+        }
+        newH.next=null;
+     return newHead;   
+	}
+}
+
+
+//odd even places
+public class solution {
+
+	
+	public static ListNode<Integer> changelist(ListNode<Integer> head) {
+		ListNode<Integer> newH=head, newL=new ListNode<Integer>(-1),newLs=newL;
+        while(head!=null&&head.next!=null){
+            newL.next=head.next;
+            head.next=head.next.next;
+            if(head.next!=null)
+            	head=head.next;
+            newL=newL.next;
+        }
+        newL.next=null;
+        head.next=newLs.next;
+        return newH;
+	}
+}
+
+
+//middle delete
+public class solution {
+
+	
+	public static ListNode<Integer> deleteMid(ListNode<Integer> head) {
+		ListNode<Integer> slow=head,fast=head,prv=null;
+        while(fast.next!=null&&fast.next.next!=null){
+//             fast=fast.next;
+//             if(fast.next!=null){
+                fast=fast.next.next;
+                prv=slow;
+                slow=slow.next;
+                       
+        }
+         	prv.next=slow.next;
+            slow.next=null;
+        return head;
+
+	}
+}
+
