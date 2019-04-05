@@ -229,4 +229,41 @@ public class solution {
 
 	}
 }
+//increment list by one done using rec
+public class solution {
 
+	static int carry=0;
+    public static ListNode<Integer> changelist(ListNode<Integer> head){
+        ListNode<Integer> temp=changeList(head);
+        if(carry==0){
+            return temp;
+        }else{
+            ListNode<Integer> list=new ListNode<>(1);
+            list.next=temp;
+            return list;
+        }
+        
+    }
+	public static ListNode<Integer> changeList(ListNode<Integer> head) {
+		if(head.next==null){
+            if(head.data==9){
+                head.data=0;
+                carry=1;
+            }else{
+                head.data++;
+            }
+            return head;
+        }
+            head.next=changeList(head.next);
+            if(carry==1){
+               if(head.data==9){
+                    head.data=0;
+                    carry=1;
+                }else{
+                    head.data++;
+                   carry=0;
+                }
+            }
+        return head;
+    }
+}
