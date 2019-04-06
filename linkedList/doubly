@@ -31,3 +31,39 @@ public class solution {
 
 	}
 }
+
+//delete a node in double 
+public class solution {
+
+	
+	public static ListNode<Integer> deleteNode(ListNode<Integer> head, ListNode<Integer> n) {
+		ListNode<Integer> prv=null,temp;
+        ListNode<Integer> newH=head;
+        while(head!=null){
+            if(n==head){
+                if(prv==null){
+                    temp=head.forw;
+                    head.forw.backw=null;
+                    head.forw=null;
+                    return temp;
+                }else if(head.forw==null){
+                    head.backw.forw=null;
+                    head.backw=null;
+                    return newH;
+                }else{
+                    head.backw.forw=head.forw;
+                    head.forw.backw=head.backw;
+                    head.forw=head.backw=null;
+//                     head.backw=null;
+//                     head.forw=null;
+                    return newH;
+                }
+            }
+            prv=head;
+            head=head.forw;
+            
+        }
+        return newH;
+	}
+}
+
