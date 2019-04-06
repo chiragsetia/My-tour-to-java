@@ -7,3 +7,27 @@ class ListNode<t> {
 		 this.data=data;
 	 }
 }
+
+//pairs
+public class solution {
+
+	public static void findPairs(ListNode<Integer> head,int n) {
+		ListNode<Integer> newH=head;
+        while(newH.forw!=null){
+            newH=newH.forw;
+        }
+        while(head.data<newH.data){
+            int v=head.data+newH.data;
+            if(v>n){
+                newH=newH.backw;
+            }else if(v<n){
+                head=head.forw;
+            }else{
+                System.out.println(head.data+" "+newH.data);
+                head=head.forw;
+                newH=newH.backw;
+            }
+        }
+
+	}
+}
