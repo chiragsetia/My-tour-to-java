@@ -305,3 +305,38 @@ public class splitAndReverse {
         }
 	}
 }
+
+
+//rotate
+public class solution {
+
+	private static int length(ListNode<Integer> h){
+        int i=0;
+        while(h!=null){
+            i++;
+            h=h.next;
+        }
+        return i;
+    }
+	public static ListNode<Integer> changeList(ListNode<Integer> head, int n) {
+		int l=length(head);
+        n=n%l;
+        if(n==0){
+            return head;
+        }
+        n=l-n-1;
+        ListNode<Integer> newH=head;
+        while(n!=0){
+            n--;
+            newH=newH.next;
+        }
+        ListNode<Integer> temp=newH.next;
+        newH.next=null;
+        ListNode<Integer> newT=temp;
+        while(newT.next!=null){
+            newT=newT.next;
+        }
+        newT.next=head;
+        return temp;
+	}
+}
