@@ -1,0 +1,46 @@
+package huffman;
+
+public class check extends me {
+
+	public static void main(String[] args) {
+		me a1=new me();
+		
+		System.out.print(a1.me());
+	}
+
+}
+
+final class me{
+	int a;
+	protected me() { 
+		//System.out.println(a);
+	}
+	int me() {
+		return a;
+	}
+}
+
+constructor can't be final
+Constructor can be public but class can't
+final functions can be overriden
+
+public class check extends me {
+
+	public static void main(String[] args) {
+		
+		System.out.println();
+	}
+	final  int me() {
+		return 1;
+	}
+}
+
+ class me{
+	int a;
+	me() {
+		//System.out.println(a);
+	}
+  int me() {
+		return 10;
+	}
+}
