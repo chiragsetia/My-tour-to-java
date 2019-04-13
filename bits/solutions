@@ -60,3 +60,43 @@ public class solution {
 		return num;
 	}
 }
+
+
+//find unique pair that are odd in number
+import java.util.*;
+public class solution {
+		
+	public static void FindUniquePair(int[] arr) {
+        int a[]=new int[2];
+        int t=0;
+        int k=0;
+        Arrays.sort(arr);
+        int prv=arr[0];
+        for(int i=0;i<arr.length;i++){
+            if(prv!=arr[i]&&t!=0){
+                a[k]=prv;
+                k=(k+1)%2;
+                t=arr[i];
+            }else{
+                t^=arr[i];
+            }
+            prv=arr[i];
+        }
+        if(t!=0){
+            a[k]=arr[arr.length-1];
+        }
+//         for(int i=0;i<arr.length;i++){
+//             int t=0;
+//             for(int j=0;j<arr.length;j++){
+//                 if(j!=i)
+//                 	t^=arr[j];
+//             }
+//             if(t==0){
+//                 a[k++]=arr[i];
+//             }
+//         }
+        k=(a[0]>a[1])?1:0;
+        System.out.println(a[k]+" "+a[(k+1)%2]);
+	}
+}
+
