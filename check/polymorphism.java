@@ -10,7 +10,7 @@ class base{
 	}  
 }
 class drived extends base{
-	public void vir(){
+	final public void vir(){
 		System.out.println("drived");
 	}
 }
