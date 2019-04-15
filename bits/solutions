@@ -99,6 +99,9 @@ public class solution {
         System.out.println(a[k]+" "+a[(k+1)%2]);
 	}
 } n^n-1=k
+
+
+//findSmallestN
 public class solution {
 	public static int FindSmallestN(int k) {
 		if(k==0)
@@ -118,5 +121,194 @@ public class solution {
         
 	}
 
+
+
+
+
+
+//no of zeros check for n
+
+import java.util.Arrays;
+public class solution {
+    public static long GetNewNum(long[] arr) {
+        long num = 0L;
+        int count1 = 0; 
+       	Arrays.sort(arr);
+        int size = arr.length;
+        int pos = 0; 	
+        for(int i=0;i<size;){
+            count1 = 0;			
+            int k = i;			
+            for(int j = i;j < size;j++){
+                if(arr[j]%2 == 1)
+                    count1++;	
+                arr[j] = arr[j]>>1;	
+                if(arr[j] == 0)	
+                    k++;			}
+           		int binary = (count1 > size - i - count1)?1:0;
+            	num += (long)Math.pow(2, pos++)*binary;
+            	i = k;		
+        }		
+        return num;	
+    }
+}
+
+
+
+//Find smallest number N such that (N XOR N-1) equals K.
+
+public class solution {
+	public static int FindSmallestN(int k) {
+		
+        k=k+1;
+        int n=k;
+        while((n&1)!=1){
+            n=n>>1;
+        }
+        if(n==1){
+            return (k)/2;
+        }
+            
+	    return -1;
+//         int []arr=new int[k];
+//         arr[k]=10;
+       // return 1;
+        
+	}
+
+}
+
 }
 if (((k + 1) & k) == 0) 	        return (k / 2) + 1;
+
+
+
+
+
+
+
+//Given a number X. Find minimum positive number Y required to make binary representation of (X+Y) palindrome.
+
+public class solution {
+	
+	static long FindPairY(long num) {
+		if(CheckPalindrome(num))
+	    return 0L;
+        long n=1L;
+        while(!CheckPalindrome((num|n))){
+            n=n+1L;
+        }
+        return n;
+	}
+	static boolean CheckPalindrome(long num) {
+       if(num==0){
+           return true;
+       }else if((num%2)==0)
+       {
+           return false;
+       }
+        String a=Long.toBinaryString(num);
+        int i=0,j=a.length()-1;
+        while(i<j){
+            if(a.charAt(i)!=a.charAt(j))
+                return false;
+            i++;
+            j--;
+        }
+        return true;
+//         long n=num;
+//         long sum=0L;
+//         if(num==0){
+//             return true;
+//         }else if(num%2==0){
+//             return false;
+//         }
+//         while(n>0){
+//             sum=sum*10L+(num%10);
+//             num=num/10;
+//         }
+//         if(n==sum){
+//             return true;
+//         }else 
+//             return false;
+	}
+}
+
+
+//Given an array, find the sum of all numbers matching the given pattern.
+import java.util.Arrays;
+public class solution {
+	
+	public static void FindSumOfNumbers(int[] arr, int cz, int co) {
+        
+        Arrays.sort(arr);
+       
+        int limit=(1<<(cz+co))-1;
+       int sum=0;
+        int ll=(1<<(cz+co-1));
+        for(int i=0;i<arr.length && arr[i]<=limit;i++){
+            if(arr[i]>ll&&count1(arr[i],co)){
+                sum+=arr[i];
+            }
+        }
+        System.out.println(sum);
+	}
+    private static boolean count1(int a, int co){
+        int c=0;
+        while(a!=0){
+            a=a&(a-1);
+            c++;
+        }
+        if(c==co){
+            return true;
+        }
+        return false;
+    }
+}
+
+
+//Given an array, add all the numbers with equal number of 0s and 1s i.e. bit_count(0) = bit_count(1) . Do not count the zeros to the left of most significant set bit
+
+public class solution {
+	
+	public static void SumOfNumbersWithSame0s1s(int[] arr) {
+        int sum=0;
+        for(int i=0;i<arr.length;i++){
+            int c=count1(arr[i]);
+            int u=1<<(2*c);
+            int l=1<<(2*c-1);
+            if(arr[i]>=l&&arr[i]<=u)
+                sum+=arr[i];
+        }
+        System.out.println(sum);
+	}
+    private static int count1(int a){
+        int c=0;
+        while(a!=0){
+            a=a&(a-1);
+            c++;
+        }
+        return c;
+    }
+}
+
+
+
+//Sort by Kth bit
+
+public class solution {
+	public static void SortArrayByKBit(int[] arr, int k) {
+        int j=0;
+        for(int i=0;i<arr.length;i++){
+            if(kBit(arr[i],k)==0){
+                int t=arr[j];
+                arr[j]=arr[i];
+                arr[i]=t;
+                j++;
+            }
+        }
+	}
+    private static int kBit(int a,int k ){
+        return (a&1<<k-1);
+    }
+}
