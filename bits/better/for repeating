@@ -1,0 +1,6 @@
+bitset=0
+if((bitset & (1<<digit)) >= 1)			
+return digit;		
+else		//if not present then set the corresponding bit			
+bitset |= (1<<digit);
+
