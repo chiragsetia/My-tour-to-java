@@ -1,0 +1,32 @@
+//There are N chocolates on the table. The teacher is distributing the chocolates one by one. Mannerless and hungry children don’t wait for their chance and come again and again for the chocolates. The teacher is looking over this. She scolds a child if at a given time, the child has already taken more chocolates than count of all the chocolates with other children.
+
+//17 April,2019
+
+import java.util.*;
+
+public class Main {
+
+	
+	public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+		HashMap<String,Integer> map=new HashMap<>();
+        int total=1;
+        int n=sc.nextInt();
+        int scold=0;
+        map.put(sc.next(),1);
+        for(int i=1;i<n;i++){
+            String t=sc.next();
+            if(map.containsKey(t)){
+                if(map.get(t)>total-map.get(t))
+                	scold++;
+                map.put(t,map.get(t)+1);
+                //total++;
+            }else{
+                map.put(t,1);
+            }
+            total++;
+        }
+        System.out.println(scold);
+	}
+
+}
