@@ -30,3 +30,61 @@ public class Main {
 	}
 
 }
+
+
+/*This summer, Ghanshyam is teaching web development to a class of N students. There are K classes in the course. Each day, he comes to the class, he teaches a new topic to the class, about which his students have never heard of. When he doesn’t come to the class, students discuss within themselves all the topics that they know.
+For each of the K classes, you are provided with roll numbers of the present participants of the course. Your task is to print the roll numbers of the participants who know all the topics discussed in the course.
+Note: Ghanshyam is also given a roll number. By default, he is given the roll number 1.*/
+
+import java.util.*;
+
+public class Main {
+
+	
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+    	int k=sc.nextInt();
+        int value=0;
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int i=0;i<k;i++){
+            Set<Integer> set=new HashSet<>();
+            int flag=0;
+            int s=sc.nextInt();
+            int max=Integer.MIN_VALUE;
+            for(int j=0;j<s;j++){
+                int r=sc.nextInt();
+                if(r==1){
+                    flag=1;
+                }else{
+                    set.add(r);
+                    if(map.containsKey(r)&&max<map.get(r)){
+                        max=map.get(r);
+                    }
+                }
+            }
+            for(Integer j:set){
+                if(flag==0){
+                    map.put(j,max);
+                }else{
+                    if(map.containsKey(j))
+                    map.put(j,map.get(j)+1);
+                    else
+                       map.put(j,1);
+                }
+            }
+            if(flag==1){
+                value++;
+            }
+        }
+        System.out.println("1");
+        Set<Integer> set=map.keySet();
+        for(Integer i:set){
+            if(value==map.get(i)){
+                System.out.println(i);
+            }
+        }
+        
+    }
+
+}
