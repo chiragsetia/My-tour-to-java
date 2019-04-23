@@ -130,3 +130,39 @@ public class Main {
         System.out.println("Ongoing");
 	}
 }
+
+/* Navdeep saw strange houses on one side of NH-1. He saw that houses were covered by an extra layer of walls at the starting and the ending. Lawns were also protected by these extra layer of walls.
+Immediately, he made a sketch. He used parentheses to denote walls. For example: a house in his sketch was shown as: (()()) and a lawn was shown as ().
+After he reached home, he forgot which were protective walls and which were real layers of wall of house. He need your help. He is giving you his sketch in the form of String. Your task is to print string after removing the outermost parentheses or wall of every house or lawn.
+Note: Each opening parentheses is complimented by closing parenthesis.*/
+
+
+import java.util.Scanner;
+
+public class Main {
+
+	
+	public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        //Stack<Character> stack=new Stack<>();
+        String s=sc.next();
+        int flag=0;
+        String ans="";
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='('&&flag==0){
+                flag=1;
+            }else if(s.charAt(i)==')'&&flag==1){
+                flag=0;
+                System.out.print(ans);
+                ans="";
+            }else if(s.charAt(i)=='('){
+                flag++;
+                ans+=s.charAt(i);
+            }else{
+				flag--;
+                ans+=s.charAt(i);
+            }
+        }
+	}
+
+}
