@@ -262,24 +262,29 @@ public class Main {
             if(sum2==sum){
                 System.out.println("true");
                	for(int k=i;k<=j;k++)
-               
+                System.out.print(arr[k]+" ");
                 return;
             }
             else if(sum2>sum){
                 if(i==j){
                     i++;
                     j++;
+                    if(i==n){
+                        break;
+                    }
                      sum2=arr[i];
                 }else{
                     
                     sum2=sum2-arr[i];
                     i++;
-                  
+                    //System.out.println("3*"+i+" "+j);
                 }
             }
             else{
                 j++;
-                
+                if(j==n){
+                    break;
+                }
                 sum2=sum2+arr[j];
             }
         }
