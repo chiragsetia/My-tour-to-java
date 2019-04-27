@@ -292,3 +292,43 @@ public class Main {
     }
 
 }
+
+
+/*Warm Reception
+Level MEDIUM
+There is only one beauty parlour in the town CodingNinjasLand. The receptionist at beauty parlour is flooded with appointment requests because “Hakori” festival is round the corner and everyone wants to look good on it.
+S/he needs your help. The problem is they don’t have chairs in reception. They are ordering chairs from NinjasKart. They don’t want to order more than required. You have to tell minimum number of chairs required such that none of the customer has to stand.
+*/
+
+// I did this by setting flags in array
+
+import java.util.Scanner;
+
+public class Main {
+
+	
+	public static void main(String[] args) {
+        int time[]=new int[2400];
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++){
+            int a=sc.nextInt();
+            time[a]++;
+        }
+        for(int i=0;i<n;i++){
+            int a=sc.nextInt();
+            time[a ]--;
+        }
+        int max=0;
+        int sum=0;
+        for(int i=0;i<2400;i++){
+            sum+=time[i];
+            if(max<sum){
+                max=sum;
+            }
+        }
+        System.out.println(max);
+	}
+
+}
+	
