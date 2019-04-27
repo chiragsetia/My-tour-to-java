@@ -262,36 +262,28 @@ public class Main {
             if(sum2==sum){
                 System.out.println("true");
                	for(int k=i;k<=j;k++)
-                System.out.print(arr[k]+" ");
+               
                 return;
             }
             else if(sum2>sum){
                 if(i==j){
                     i++;
                     j++;
-                   // System.out.println("2*"+i+" "+j);     
-                    if(i==n){
-                     //   System.out.println("1*"+i+" "+j);
-                        break;
-                    }
-                    sum2=arr[i];
+                     sum2=arr[i];
                 }else{
                     
                     sum2=sum2-arr[i];
                     i++;
-                    //System.out.println("3*"+i+" "+j);
+                  
                 }
             }
             else{
                 j++;
-                //System.out.println("4*"+i+" "+j);
-                if(j==n){
-                  //  System.out.println("5*"+i+" "+j);
-                        break;
-                    }
+                
                 sum2=sum2+arr[j];
             }
         }
         System.out.println("false");
     }
+
 }
