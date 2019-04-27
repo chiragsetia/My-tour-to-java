@@ -41,6 +41,8 @@ public class Solution {
 		}
 	}
 */
+
+	//print level wise and return head for each level
 	public static ArrayList<Node<BinaryTreeNode<Integer>>> LLForEachLevel(BinaryTreeNode<Integer> root) {
       ArrayList<Node<BinaryTreeNode<Integer>>> list= new ArrayList<>();
       if(root==null){
@@ -72,7 +74,28 @@ public class Solution {
       return list;
 	}
 	private static Node<BinaryTreeNode<Integer>> headReturn(ArrayList<Node<BinaryTreeNode<Integer>>> list){
+		for(int i=0;i<list.length-1;i++){
+			list.get(i).next=list.get(i+1);
+		}
 		return list.get(0);
+	}
+
+/*Nodes without sibling
+Given a binary tree, print all nodes that don’t have a sibling.
+*/
+	public static void printNodesWithoutSibling(BinaryTreeNode<Integer> root) {
+        if(root==null){
+            return null;
+        }
+        if(!(root.right!=null && root.left!=null)){
+            if(root.left==null){
+                System.out.println(root.right);
+            }else if(root.right==null){
+            	System.out.println(root.left);
+            }
+        }
+        printNodesWithoutSibling(root.left);
+        printNodesWithoutSibling(root.right);
 	}
 
 }
