@@ -332,3 +332,40 @@ public class Main {
 
 }
 	
+/*Jumping Game
+Level HARD
+People of CodingNinjas Land play a jumping game. Let us discuss the rules -
+You are given some N boards with one integer written on each board. Now these boards are arranged on ground in line by the judges. The player has to select integers from the given boards such that current selected integer must be greater than previously selected integer i.e. selected integers must be in increasing order.
+The player wins if the selected integers add up to form maximum sum possible from the given integers.
+Now, you have to help the player in finding the winning sum from given integers.
+For Example: Let the given N boards arranged be : [1, 12, 2, 4, 99, 12, 14], then the resultant increasing set of integers with maximum sum would be: [1, 12, 99] and therefore the winning sum is 112.*/
+
+import java.util.Scanner;
+
+public class Main {
+
+	 public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        int output[]=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        int ans= helper(arr,0,0,output);
+        System.out.println(ans);
+    }
+    private static int helper(int []arr, int n,int lm,int [] output){
+        if(n==arr.length){
+            return 0;
+        }
+//         if(output[n]!=0){
+//             return output[n];
+//         }
+        int sum1=(lm<arr[n])?(arr[n]+helper(arr,n+1,arr[n],output)):0;
+        int sum2=helper(arr,n+1,lm,output);
+        output[n]=Math.max(sum1,sum2);
+        return output[n];
+    }
+
+}
