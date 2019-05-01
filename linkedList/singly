@@ -340,3 +340,40 @@ public class solution {
         return temp;
 	}
 }
+
+
+/*Remove duplicates from an unsorted integer linked list. Keep only the last appearance of the integer. Example:
+Given: 12>11>12>21>41>43>21>12
+Output: 11>41>43>21>12
+You just need to return the head of new linked list, don't print the elements*/
+
+
+// done using stack and hashSet
+
+public static ListNode<Integer> LastAppearance(ListNode<Integer> head) {
+        Stack<Integer> s=new Stack<>();
+       	Set<Integer> set =new HashSet<>();
+        //ListNode<Integer> newHead=head;
+        while(head!=null){
+        	set.add(head.data);
+        	s.push(head.data);
+        	head=head.next;
+        }
+    head=null;
+    while(!s.isEmpty()){
+    	if(set.contains(s.peek())){
+            set.remove(s.peek());
+    		head=inReverse(head,s.peek());
+    	}
+        s.pop();
+     	}
+     	return head;
+    }
+    private static ListNode<Integer> inReverse(ListNode<Integer> head, int v){
+    	if(head==null){
+    		return new ListNode<>(v);
+    	}
+    	ListNode<Integer> newH=new ListNode<>(v);
+    	newH.next=head;
+    	return newH;
+    }
