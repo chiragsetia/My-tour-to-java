@@ -377,3 +377,46 @@ public class solution {
 	}
 	
 }
+
+
+
+/*Level MEDIUM
+Given an n x n square matrix, print sum of all sub-squares of size k x k where k is smaller than or equal to n.
+See the sample input.
+Input format :
+Line 1 : Integer K
+Line 2 : Integer N
+Line 3 : NXN elements of the matrix separated by space
+Output Format :
+ Print all sums in a specific order
+Constraints :
+ 1 <= K <= 10^2
+ 1 <= N <= 10^3
+Sample Input :
+2
+3
+8 1 3
+2 9 3
+0 3 5
+Sample Output :
+20 16 
+14 20 
+
+*/
+
+public static void PrintAllSumKxK(int[][] mat, int n, int k) {
+		//int newMat[][]=new int[n-k+1][n-k+1];
+        for(int i=0;i<n-k+1;i++){
+            for(int j=0;j<n-k+1;j++){
+                int sum=0;
+                for(int m=i;m<i+k;m++){
+                    for(int l=j;l<j+k;l++){
+                     sum+=mat[m][l];
+//                         System.out.println( m+" "+l);
+                    }
+                }
+                System.out.print(sum+" ");
+            }
+            System.out.println();
+        }
+}
