@@ -279,3 +279,36 @@ public class CommonElement {
     }
 	
 }
+
+
+
+/*Return in Row wave form
+Level EASY
+Given an N*M 2D integer array, write a method that read rows of the matrix alternatively from left to right and right to left and return them as a 1 dimensional array.
+That is, read 1st row from left to right, 2nd row from right to left, 3rd row from left to right and so on and save then in 1D array.
+*/
+
+
+import java.util.ArrayList;
+
+public class Solution {
+	public static ArrayList<Integer> readRowsAlternatively(int[][] input, int row, int col) {
+        ArrayList<Integer> list=new ArrayList<>();
+        int d=0;
+        input[row][col]=0;
+            for(int i=0;i<row;i++){
+            if(d==0){
+                for(int j=0;j<col;j++){
+                   list.add(input[i][j]); 
+                }
+            }
+            else if(d==1){
+                for(int j=col-1;j>=0;j--){
+                   list.add(input[i][j]); 
+                }
+            }
+            d=(d+1)%2;
+        }
+        return list;
+	}
+}
