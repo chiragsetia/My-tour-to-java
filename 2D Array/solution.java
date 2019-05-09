@@ -312,3 +312,68 @@ public class Solution {
         return list;
 	}
 }
+
+
+/*Print Matrix
+Level EASY
+Write a code which inputs two numbers m and n and creates a matrix of size m x n (m rows and n columns) in which every elements is either X or O. The Xs and Os must be filled alternatively, the matrix should have outermost rectangle of Xs, then a rectangle of Os, then a rectangle of Xs, and so on.
+See the sample input.
+Input format :
+Line 1 : Number of rows M and cols N in the matrix
+Line 2 : MXN elements of the matrix separated by space 
+Output Format :
+ Print the matrix
+Constraints :
+ 1 <= M <= 10^3
+ 1 <= N <= 10^3
+Sample Input :
+3 3
+Sample Output :
+XXX
+XOX
+XXX*/
+
+
+
+public class solution {
+	
+	public static void PrintPattern(int m, int n) {
+        char arr[][]=new char[m][n];
+        int update=0;
+        int s1=0,s2=0;
+        char r='X';
+        int a=m,b=n;
+        while(update<a*b){
+           // System.out.println(update);
+            for(int i=s2;i<n;i++){
+                update++;
+                arr[s1][i]=r;
+            }
+            for(int j=s1+1;j<m;j++){
+                update++;
+                arr[j][n-1]=r;
+            }
+            for(int i=s2;i<n-1;i++){
+                update++;
+                arr[m-1][i]=r;
+            }
+            for(int j=s1+1;j<m-1;j++){
+                update++;
+                arr[j][s2]=r;
+            }
+            s1++;
+            s2++;
+            m--;
+            n--;
+            r=(r=='X')?'O':'X';
+            //System.out.println(update);
+        }
+        for(int i=0;i<arr.length;i++){
+            for(int j=0;j<arr[i].length;j++){
+                System.out.print(arr[i][j]);
+            }
+            System.out.println();
+        }
+	}
+	
+}
