@@ -112,3 +112,69 @@ public class Main {
     }
 
 }
+
+
+
+/*Interview Shuriken 8: Longest Substring
+Level HARD
+This problem was asked by Amazon.
+Given an integer k and a string s, find the length of the longest substring that contains at most k distinct characters.
+For example, given s = "abcba" and k = 2, the longest substring with k distinct characters is "bcb".
+Follow up: Can you do it in O(n)
+*/
+
+public class Main {
+
+	
+	public static void main(String[] args) {
+		/* Your class should be named Main.
+ 			* Read input as specified in the question.
+ 			* Print output as specified in the question.
+		*/
+
+		// Write your code here
+        Scanner sc =new Scanner(System.in);
+        int k=sc.nextInt();
+        String s=sc.next();
+        System.out.println(longestSubstring(s,k));
+	}
+   private static int longestSubstring(String s, int k){
+        int i=0;
+        int j=0;
+        int max=0;
+       // String maxS="";
+        HashMap<Character,Integer> set=new HashMap<>();
+        set.put(s.charAt(0),1); 
+        while(j<s.length()){
+            if(set.size()==k){
+                //System.out.println("equal");
+                if((j-i+1)>max){
+                    max=j-i+1;
+                    //maxS=s.substring(i,j+1);
+                }
+            }
+            if(set.size()>k){
+                if(set.get(s.charAt(i))>1){
+                    set.put(s.charAt(i),set.get(s.charAt(i))-1);
+                }else{
+                    set.remove(s.charAt(i));
+                }
+                i++;
+            }
+            else{
+               // System.out.println(set);
+                j++;
+                if(j==s.length()){
+                    return max;
+                }
+                if(set.containsKey(s.charAt(j))){
+                    set.put(s.charAt(j),set.get(s.charAt(j))+1);
+                }else{
+                    set.put(s.charAt(j),1);
+                }
+            }
+        }
+        return(max);
+    }
+
+}
