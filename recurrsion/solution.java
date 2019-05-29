@@ -51,3 +51,113 @@ public class Solution {
     }
 
 }
+*Find Floor value
+Level EASY
+Given a sorted array A and an integer x, floor value of x is the largest element in the array which is smaller than or equal to x. You need to write an efficient function to find floor value of x.
+*/
+
+public class solution {
+	public static int findFloor(int[] array, int element){
+        return helper(array, element,array.length-1);
+	}
+    private static int helper(int []arr,int e,int l){
+        if(l==-1){
+            return l;
+        }
+        if(arr[l]<=e){
+            return arr[l];
+        }else{
+            return helper(arr,e,l-1);
+        }
+    }
+}
+
+/*Count Inversions
+Level MEDIUM
+Let A[0 ... n-1] be an array of n distinct positive integers. If i < j and A[i] > A[j] then the pair (i, j) is called an inversion of A (where i and j are indexes of A). Given an integer array A, your task is to find the number of inversions in A.
+*/
+
+public class solution {
+	
+	long solve(int[] A,int n){
+        return sort(A,0,n-1);
+	}
+	long merge(int arr[], int l, int m, int r) 
+    { 
+        long a=0;
+        // Find sizes of two subarrays to be merged 
+        int n1 = m - l + 1; 
+        int n2 = r - m; 
+  
+        /* Create temp arrays */
+        int L[] = new int [n1]; 
+        int R[] = new int [n2]; 
+  
+        /*Copy data to temp arrays*/
+        for (int i=0; i<n1; ++i) 
+            L[i] = arr[l + i]; 
+        for (int j=0; j<n2; ++j) 
+            R[j] = arr[m + 1+ j]; 
+  
+  
+        /* Merge the temp arrays */
+  
+        // Initial indexes of first and second subarrays 
+        int i = 0, j = 0; 
+  
+        // Initial index of merged subarry array 
+        int k = l; 
+        while (i < n1 && j < n2) 
+        { 
+            if (L[i] <= R[j]) 
+            { 
+                arr[k] = L[i]; 
+                i++; 
+            } 
+            else
+            { 
+                a+=n1-i;
+                arr[k] = R[j]; 
+                j++; 
+            } 
+            k++; 
+        } 
+  
+        /* Copy remaining elements of L[] if any */
+        while (i < n1) 
+        { 
+            arr[k] = L[i]; 
+            i++; 
+            k++; 
+        } 
+  
+        /* Copy remaining elements of R[] if any */
+        while (j < n2) 
+        { //a++;
+            arr[k] = R[j]; 
+            j++; 
+            k++; 
+        } 
+        return a;
+    } 
+  
+    // Main function that sorts arr[l..r] using 
+    // merge() 
+    long sort(int arr[], int l, int r) 
+    { 
+        long a=0;
+        if (l < r) 
+        { 
+            // Find the middle point 
+            int m = (l+r)/2; 
+  
+            // Sort first and second halves 
+            a= sort(arr, l, m); 
+            a+=sort(arr , m+1, r); 
+  
+            // Merge the sorted halves 
+            a+=merge(arr, l, m, r); 
+        }
+     return a;   
+    } 
+}
