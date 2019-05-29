@@ -71,6 +71,32 @@ public class solution {
         }
     }
 }
+//-------------------------------------------------------------------------------------------------------
+// another apporch
+public class solution {
+	public static int findFloor(int[] array, int element){
+        if(array[array.length-1]<element){
+            return array[array.length-1];
+        }
+        return helper(array, element,0,array.length-1);
+	}
+    private static int helper(int []arr,int e,int s,int l){
+        if(s>l){
+            return -1;
+        }
+       int mid=s+(l-s)/2;
+        if(arr[mid]==e){
+            return e;
+        }
+        if(mid>0 && arr[mid-1]<=e&&arr[mid]>e){
+            return arr[mid-1];
+        }
+        if(arr[mid]>e){
+            return helper(arr,e,s,mid-1);
+        }
+        return helper(arr,e,mid+1,l);
+    }
+}
 
 /*Count Inversions
 Level MEDIUM
