@@ -25,3 +25,29 @@ public class Solution {
 	}
 	
 }
+
+
+
+/*Lexicographical Order
+Level HARD
+Given a number n, print numbers from 1 to n in dictionary(lexicographical) order.*/
+
+import java.util.*;
+public class Solution {
+
+	public static void lexicographicalOrder(int num){
+        for(int i=1;i<=9;i++){
+            lex(i,num);
+        }
+    }
+    private static void lex(int i, int num){
+        if(i>num){
+            return;
+        }
+       System.out.println(i);
+        for(int j=0;j<10;j++){
+            lex(i*10+j,num);
+        }
+    }
+
+}
