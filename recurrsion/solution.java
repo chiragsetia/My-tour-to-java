@@ -187,3 +187,38 @@ public class solution {
      return a;   
     } 
 }
+
+
+
+
+/*Level MEDIUM
+Given an integer n, you need to print all numbers less than n which are having digits only 2 or 5 or both.
+Print every number in new line. Order of numbers doesn't matter.
+Input format :
+Integer n
+Output format :
+Required numbers in different lines
+Input :
+10
+Output :
+ 2
+ 5 */
+
+
+public class solution {
+	
+	public static void printSequence(int range){
+        for(int i=2;i<=range;i++){
+            printSeq(i,i);
+        }
+	}
+    private static void printSeq(int i,int j){
+        if(j==2||j==5){
+            System.out.println(i);
+            return;
+        }
+        if(j%10==2||j%10==5){
+            printSeq(i,j/10);
+        }
+    }
+}
