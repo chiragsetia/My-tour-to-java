@@ -59,3 +59,37 @@ public class Main {
      }
 
 }
+
+
+
+//his problem was asked by Google.
+/*Given an array of strictly the characters 'R', 'G', and 'B', segregate the values of the array so that all the Rs come first, the Gs come second, and the Bs come last. You can only swap elements of the array.
+Follow Up: Do this in linear time and in-place.
+For example, given the array ['G', 'B', 'R', 'R', 'B', 'R', 'G'], it should become ['R', 'R', 'R', 'G', 'G', 'B', 'B'].*/
+
+
+public class Solution {
+	static void sortRGB(char[] arr) {
+		//Your code goes here
+       	int i=0;
+        int j=arr.length-1;
+        for(int k=j;k>=0;k--){
+            if(arr[k]=='B'){
+                 char t=arr[j];
+                arr[j]=arr[k];
+                arr[k]=t;
+                j--;
+            }
+        }
+        for(int k=0;k<=j;k++){
+            if(arr[k]=='R'){
+                char t=arr[i];
+                arr[i]=arr[k];
+                arr[k]=t;
+                i++;
+            }
+        }
+	}
+}
+
+//or we can do it by R to starting, g as it is and b to last but not update k
