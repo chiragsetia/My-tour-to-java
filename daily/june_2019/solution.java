@@ -93,3 +93,69 @@ public class Solution {
 }
 
 //or we can do it by R to starting, g as it is and b to last but not update k
+
+
+
+
+/*Ancestors
+Level MEDIUM
+Given a binary tree with N number of nodes and a node K, you need to find and return a list of all ancestors of the given node K.
+Input format :
+Line 1 : Nodes in level order form (separated by space). If any node does not have left or right child, take -1 in its place
+Line 2 : Node K
+Output format :
+A list of all ancestors
+Constraints :
+1 <= N <= 10^5
+Sample Input :
+1 2 3 4 5 -1 7 -1 -1 6 -1 8 -1 -1 -1 -1 -1
+6
+Sample Output :
+1
+2
+5*/
+
+import java.util.*;
+
+public class Solution {
+
+/*	Binary Tree Node class
+ * 
+ * class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+		
+		public BinaryTreeNode(T data) {
+			this.data = data;
+		}
+	}
+	*/
+	
+	public static ArrayList<Integer> ancestors(BinaryTreeNode<Integer> root, int k) {
+		/* Your class should be named Solution
+		* Don't write main().
+		* Don't read input, they are passed as function arguments.
+		* Return the output, don't print it.
+		*/
+        if(root==null){
+            return null;
+        }
+        if(root.data==k){
+            ArrayList<Integer> list =new ArrayList<>();
+            return list;
+        }
+        ArrayList<Integer> list=ancestors(root.left,k);
+        if(list!=null){
+            list.add(0,root.data);
+            return list;
+        }
+        list=ancestors(root.right,k);
+        if(list==null){
+            return null;
+        }
+        list.add(0,root.data);
+        return list;
+	}
+	
+}
