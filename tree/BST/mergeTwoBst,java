@@ -1,0 +1,177 @@
+/*Given two BST, you need to print the elements of both BSTs in sorted form.
+
+Input Format:
+The first line of input contains an integer T denoting the no of test cases. Then T test cases follow. Each test case contains three lines. The first line of each test case contain's an integer N and M denoting the size of the two BST's. Then In the next two line are space separated values of the two BST's.
+
+Output Format:
+For each testcase, in a new line, print the elements of both BSTs in sorted form.
+
+Your Task:
+This is a function problem, you don't have to take any input. Just complete the function merge that nodes of both BSTs as parameters.
+
+Constraints:
+1 <= T <= 100
+1 <= N,M <= 100
+
+Example:
+Input:
+2
+3 3
+1 33 4 
+6 7 1
+2 2
+1 6
+9 2
+Output:
+1 1 4 6 7 33
+1 2 6 9
+
+Explanation:
+Testcase1: The BSTs look like
+
+BST1:
+                1
+                  \
+                    4
+                       \
+                         33
+
+BST2:
+                     6
+                    /   \
+                   1    7
+The sorted elements of above BSTs are 1 1 4 6 7 33
+ */
+ 
+ {
+import java.util.Stack;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.*;
+class Node{
+	int data;
+	Node left, right;
+	Node(int d){
+		data=d;
+		left=right=null;
+	}
+}
+class Merge{
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		while(t-- > 0){
+			int x = sc.nextInt();
+			int y = sc.nextInt();
+			Node fhead = null;
+			Node shead = null;
+			for(int i = 0; i < x; i++)
+			{
+				if(fhead==null)
+					fhead = new Node(sc.nextInt());
+				else{
+					insert(fhead,sc.nextInt());
+				}
+			}
+			for(int i = 0; i < y; i++)
+			{
+				if(shead==null)
+					shead = new Node(sc.nextInt());
+				else{
+					insert(shead,sc.nextInt());
+				}
+			}
+			GfG g = new GfG();
+			g.merge(fhead , shead);
+			System.out.println();
+		}
+	}
+	public static Node insert(Node head, int a){
+		if(head==null)
+			return new Node(a);
+		if(head.data>a)
+			head.left=insert(head.left,a);
+		if(head.data<a)
+			head.right=insert(head.right,a);
+		return head;
+	}
+}
+}
+/*This is a function problem.You only need to complete the function given below*/
+/*Complete the function below
+Node is as follows:
+class Node{
+	int data;
+	Node left, right;
+	Node(int d){
+		data=d;
+		left=right=null;
+	}
+}*/
+class GfG
+{
+	public static void merge(Node root1 , Node root2)
+         {
+            Stack<Node> s1=new Stack<>(), s2=new Stack<>();
+            Node c1=root1;
+            Node c2=root2;
+	            	while(c1!=null){
+	            		s1.push(c1);
+	            		c1=c1.left;
+	            	}
+          
+	            	while(c2!=null){
+	            		s2.push(c2);
+	            		c2=c2.left;
+	            	}
+            	while(!s2.isEmpty()&&!s1.isEmpty()){
+            		if(s1.peek().data<s2.peek().data){
+            		    Node temp=s1.pop();
+            		    c1=temp.right;
+            			System.out.print(temp.data+" ");
+            			   while(c1!=null){
+	            		    s1.push(c1);
+	            		    c1=c1.left;
+	            	       }
+            		}else{
+            		    Node temp=s2.pop();
+            		    c2=temp.right;
+            			System.out.print(temp.data+" ");
+            			   while(c2!=null){
+	            		    s2.push(c2);
+	            		    c2=c2.left;
+            			   } 
+            		}
+            	}
+            Node l=null;
+            while(!s1.isEmpty()){
+                l=s1.pop();
+                System.out.print(l.data+" ");
+                c1=l.right;
+                while(c1!=null){
+	   		    s1.push(c1); 
+	   		    c1=c1.left;
+	        }
+                
+            }
+            while(!s2.isEmpty()){
+                l=s2.pop();
+                c2=l.right;
+    			System.out.print(l.data+" ");
+    			   while(c2!=null){
+        		    s2.push(c2);
+        		    c2=c2.left;
+    			   } 
+            }
+    
+        }
+        private static void inOrder(Node root){
+            if(root==null){
+                return;
+            }
+            inOrder(root.left);
+            System.out.print(root.data+" ");
+            inOrder(root.right);
+        }
+}
+ 
