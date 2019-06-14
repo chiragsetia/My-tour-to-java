@@ -1,0 +1,28 @@
+/*Level MEDIUM
+Given a binary search tree and ans a key,Find the inorder successor and predecessor of a given key.*/
+
+import java.util.*;
+
+public class solution 
+    
+{
+    static int prv=0;
+    static void printPreSuc(BinaryTreeNode<Integer> root, int data)
+	{
+        if(root==null){
+            return;
+        }
+        printPreSuc(root.left,data);
+        if(root.data==data){
+            System.out.print(prv+" ");
+        }
+        if(data==prv){
+            System.out.print(root.data);
+            prv=0;
+            return;
+        }
+        prv=root.data;
+        printPreSuc(root.right,data);
+
+    }   
+}
