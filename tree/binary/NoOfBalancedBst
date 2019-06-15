@@ -1,0 +1,20 @@
+//no of balacned binary tree
+//based upon the fact that balance is related to height and a balanced tree can be if its left and right subtrees  are balanced and having
+//max ht diff of 1
+public class Solution {
+
+	public static int balancedTreesOfHeightH(int h){
+        long []arr=new long[h+1];
+        if(h<2){
+            return h==2?3:1;
+        }
+        arr[0]=1L;
+        arr[1]=1L;
+        arr[2]=3L;
+        long mod=(long)(Math.pow(10,9)+7);
+        for(int i=3;i<=h;i++){
+            arr[i]=(((arr[i-1]*arr[i-1])%mod)+2L*((arr[i-1]*arr[i-2])%mod))%mod;
+        }
+        return (int)arr[h];
+	}
+}
