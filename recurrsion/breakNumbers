@@ -1,0 +1,34 @@
+/*
+Break Numbers
+Level HARD
+Given an integer n, break it into smaller numbers such that their summation is equal to n.
+Print all such combinations in different lines.
+Note : [1, 2, 1] and [1,1, 2] are same, so print the particular sequence with increasing order.
+Order of different combinations doesn't matter*/
+
+
+
+//use of addAll funtions
+
+import java.util.*;
+public class solution {
+	public static void printCombination(int num){
+        System.out.println(help(num,1,""));
+	}
+    static Set<String> help(int num,int i,String o){
+        if(num==0){
+            Set<String> s=new HashSet<>();
+            s.add(o);
+            return s;
+        }
+        if(num<i){
+            return new HashSet<>() ;
+        }
+        Set<String> s1=help(num-i,i,o+" "+Integer.toString(i));
+        s1.addAll(help(num-i,i+1,o+" "+Integer.toString(i)));
+        s1.addAll(help(num,i+1,o));
+        return s1;
+    }
+}
+
+
