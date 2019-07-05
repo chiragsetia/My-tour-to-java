@@ -1,0 +1,18 @@
+//finding rotation
+// by finding mid value smaller than both of its side, and prv is calculated as mod fails with -ve numbers
+
+static int FindPovit(int []arr,int l,int h){
+        if(h==l){
+            return l;
+        }
+        int mid=(l+h)/2;
+        int prv=(mid-1+arr.length)%arr.length;
+        int high=(mid+1)%arr.length;
+        if(arr[mid]<arr[prv]&&arr[mid]<arr[high]){
+            return arr[mid];
+        }else if(arr[mid]<arr[l]){
+            return FindPovit(arr,l,prv);
+        }else{
+            return FindPovit(arr,high,h);
+        }
+    }
